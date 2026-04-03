@@ -1,7 +1,7 @@
 [README.md](https://github.com/user-attachments/files/26454428/README.md)
 <div align="center">
 
-<h2>PandaXMusic</h2>
+<h2>NewMusic</h2>
 
 <b>Telegram Group Calls Streaming Bot</b><br>
 Supports YouTube, Spotify, Resso, Apple Music, SoundCloud and M3U8 links.
