@@ -47,7 +47,7 @@ class Inline:
             ]]
         else:
             cbs = ["admins", "auth", "blist", "lang", "ping", "play", "queue", "stats", "sudo"]
-            buttons = [self.ikb(text=f"✦ {_lang[f'help_{i}']}", callback_data=f"help {cb}") for i, cb in enumerate(cbs)]
+            buttons = [self.ikb(text=f"✦ {_lang[f'help_{i}']}", callback_data=f"help {cb}",style=ButtonStyle.PRIMARY ) for i, cb in enumerate(cbs)]
             rows = [buttons[i:i + 3] for i in range(0, len(buttons), 3)]
         return self.ikm(rows)
 
@@ -102,7 +102,7 @@ class Inline:
                 self.ikb(text=f"{lang['support']}", url=config.SUPPORT_CHAT,style=ButtonStyle.SUCCESS),
                 self.ikb(text=f"{lang['channel']}", url=config.SUPPORT_CHANNEL,style=ButtonStyle.SUCCESS),
             ],
-            [self.ikb(text=f"{lang['source']}", url="t.me/leomax2001", style=ButtonStyle.PRIMARY)],
+            [self.ikb(text=f"{lang['source']}", url="t.me/HABTHAR999", style=ButtonStyle.PRIMARY)],
         ]
                 # အပေါ်က rows တွေ ပြီးတဲ့နောက်...
         if not private:
