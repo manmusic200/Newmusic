@@ -86,7 +86,7 @@ class TgCall(PyTgCalls):
                     media.duration,
                     media.user,
                 )
-                keyboard = buttons.controls(chat_id)
+                keyboard = buttons.controls(chat_id,_lang=_lang)
                 try:
                     if _thumb:
                         await message.edit_media(
