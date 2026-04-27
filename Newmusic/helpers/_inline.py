@@ -28,17 +28,21 @@ class Inline:
             keyboard.append([self.ikb(text=status, callback_data=f"controls status {chat_id}", style=ButtonStyle.PRIMARY)])
         elif timer:
             keyboard.append([self.ikb(text=timer, callback_data=f"controls status {chat_id}", style=ButtonStyle.PRIMARY)])
+        
         if not remove:
+            # ပထမ Row: Control ခလုတ်များ
             keyboard.append(
                 [
-                    self.ikb(text="▷", callback_data=f"controls resume {chat_id}",style=ButtonStyle.PRIMARY),
+                    self.ikb(text="▷", callback_data=f"controls resume {chat_id}", style=ButtonStyle.PRIMARY),
                     self.ikb(text="⥁", callback_data=f"controls replay {chat_id}", style=ButtonStyle.DANGER),
                     self.ikb(text="II", callback_data=f"controls pause {chat_id}", style=ButtonStyle.PRIMARY),
                     self.ikb(text="▢", callback_data=f"controls stop {chat_id}", style=ButtonStyle.DANGER),
                     self.ikb(text="‣‣I", callback_data=f"controls skip {chat_id}", style=ButtonStyle.PRIMARY),    
-                ])
-            keyboard.append (
-                [   self.ikb(text=f"{_lang['close']}", callback_data="help close", style=ButtonStyle.DANGER),]
+                ]
+            )
+            # ဒုတိယ Row: Close ခလုတ်
+            keyboard.append(
+                [self.ikb(text=f"{_lang['close']}", callback_data="help close", style=ButtonStyle.DANGER)]
             )
         return self.ikm(keyboard)
 
@@ -50,7 +54,7 @@ class Inline:
             ]]
         else:
             cbs = ["admins", "auth", "blist", "lang", "ping", "play", "queue", "stats", "sudo"]
-            buttons = [self.ikb(text=f"✦ {_lang[f'help_{i}']}", callback_data=f"help {cb}",style=ButtonStyle.PRIMARY ) for i, cb in enumerate(cbs)]
+            buttons = [self.ikb(text=f"✦ {_lang[f'help_{i}']}", callback_data=f"help {cb}", style=ButtonStyle.PRIMARY) for i, cb in enumerate(cbs)]
             rows = [buttons[i:i + 3] for i in range(0, len(buttons), 3)]
         return self.ikm(rows)
 
@@ -98,27 +102,22 @@ class Inline:
         )
 
     def start_key(self, lang: dict, private: bool = False) -> types.InlineKeyboardMarkup:
-        rows = [
-            [self.ikb(text=f"{lang['add_me']}", url=f"https://t.me/{app.username}?startgroup=true", style=ButtonStyle.PRIMARY)],
-            [self.ikb(text=f"{lang['help']}", callback_data="help", style=ButtonStyle.DANGER)],
-            [
-                self.ikb(text=f"{lang['support']}", url=config.SUPPORT_CHAT,style=ButtonStyle.SUCCESS),
-                self.ikb(text=f"{lang['channel']}", url=config.SUPPORT_CHANNEL,style=ButtonStyle.SUCCESS),
-            ],
-            [self.ikb(text=f"{lang['source']}", url="t.me/HANTHAR999", style=ButtonStyle.PRIMARY)],
-        ]
-                # အပေါ်က rows တွေ ပြီးတဲ့နောက်...
         if not private:
-            # Group ထဲမှာဆိုရင် အပေါ်က Button တွေအကုန် ဖျက်ပြီး 
-            # အောက်က Button ၂ ခုပဲ ပြမယ်လို့ သတ်မှတ်လိုက်တာပါ
-         rows = [
-             
-            [self.ikb(text=f"{lang['add_me']}", url=f"https://t.me/{app.username}?startgroup=true", style=ButtonStyle.PRIMARY)],
-            [self.ikb(text=f"{lang['language']}", callback_data="language",style=ButtonStyle.DANGER)],
-             
-         ]
+            rows = [
+                [self.ikb(text=f"{lang['add_me']}", url=f"https://t.me/{app.username}?startgroup=true", style=ButtonStyle.PRIMARY)],
+                [self.ikb(text=f"{lang['language']}", callback_data="language", style=ButtonStyle.DANGER)],
+            ]
+        else:
+            rows = [
+                [self.ikb(text=f"{lang['add_me']}", url=f"https://t.me/{app.username}?startgroup=true", style=ButtonStyle.PRIMARY)],
+                [self.ikb(text=f"{lang['help']}", callback_data="help", style=ButtonStyle.DANGER)],
+                [
+                    self.ikb(text=f"{lang['support']}", url=config.SUPPORT_CHAT, style=ButtonStyle.SUCCESS),
+                    self.ikb(text=f"{lang['channel']}", url=config.SUPPORT_CHANNEL, style=ButtonStyle.SUCCESS),
+                ],
+                [self.ikb(text=f"{lang['source']}", url="t.me/HANTHAR999", style=ButtonStyle.PRIMARY)],
+            ]
         return self.ikm(rows)
-
 
     def yt_key(self, link: str) -> types.InlineKeyboardMarkup:
         return self.ikm(
