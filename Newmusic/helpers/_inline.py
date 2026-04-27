@@ -18,6 +18,7 @@ class Inline:
     def controls(
         self,
         chat_id: int,
+        _lang: dict,
         status: str = None,
         timer: str = None,
         remove: bool = False,
@@ -35,8 +36,9 @@ class Inline:
                     self.ikb(text="II", callback_data=f"controls pause {chat_id}", style=ButtonStyle.PRIMARY),
                     self.ikb(text="▢", callback_data=f"controls stop {chat_id}", style=ButtonStyle.DANGER),
                     self.ikb(text="‣‣I", callback_data=f"controls skip {chat_id}", style=ButtonStyle.PRIMARY),    
-                ]
-                [   self.ikb(text=f"{_lang['close']}", callback_data="help close", style=ButtonStyle.DANGER)],
+                ])
+               keyboard.append (
+                [   self.ikb(text=f"{_lang['close']}", callback_data="help close", style=ButtonStyle.DANGER)]
             )
         return self.ikm(keyboard)
 
